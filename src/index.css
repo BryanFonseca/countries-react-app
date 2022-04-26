@@ -50,6 +50,10 @@ button {
   background-color: inherit;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 svg {
   height: 20px;
   width: 20px;

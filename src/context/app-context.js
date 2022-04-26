@@ -6,12 +6,10 @@ const AppContext = createContext({
   setScheme: () => {},
 });
 
-const initialState = {
-  scheme: "dark",
-};
-
 export const AppContextProvider = (props) => {
   const [scheme, setScheme] = useState("dark");
+  const [countriesData, setCountriesData] = useState(null);
+  const [filteredCountries, setFilteredCountries] = useState(null);
 
   const toggleScheme = () => {
     setScheme((state) => {
@@ -22,11 +20,27 @@ export const AppContextProvider = (props) => {
     });
   };
 
+  const filterCountries = (enteredFilter) => {
+    if(enteredFilter.toLowerCase().includes('all')) {
+      setFilteredCountries(countriesData);
+      return;
+    }
+    setFilteredCountries(
+      countriesData.filter((country) => {
+        return country.region.includes(enteredFilter);
+      })
+    );
+  };
+
   return (
     <AppContext.Provider
       value={{
-	toggleScheme,
+        toggleScheme,
         scheme,
+        countriesData,
+        setCountriesData,
+        filterCountries,
+        filteredCountries,
       }}
     >
       {props.children}

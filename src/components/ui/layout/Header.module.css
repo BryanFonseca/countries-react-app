@@ -1,10 +1,27 @@
-.header{
-/*   background-color: hsl(0, 0%, 100%); */
+.header {
+  /*   background-color: hsl(0, 0%, 100%); */
   background-color: var(--background-color);
   display: flex;
   justify-content: space-between;
   padding: 2.4em 1.2em;
   margin-bottom: 1.4em;
+}
+
+@media (min-width: 47.5em) {
+  .header {
+    padding: 2.4em 4em;
+  }
+}
+
+@media (min-width: 74em) {
+  .header {
+  }
+}
+
+@media (min-width: 90em) {
+  .header {
+
+  }
 }
 
 .header h1 {

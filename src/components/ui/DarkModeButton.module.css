@@ -1,4 +1,4 @@
-.darkmode-button {
+.darkmodeButton {
   display: flex;
   align-items: center;
   gap: 0.7em;
@@ -7,11 +7,11 @@
   background-color: transparent;
 }
 
-.darkmode-button:hover {
+.darkmodeButton:hover {
   cursor: pointer;
 }
 
-.darkmode-button svg{
+.darkmodeButton svg{
   height: 18px;
   width: 18px;
   stroke-width: 1.5px;

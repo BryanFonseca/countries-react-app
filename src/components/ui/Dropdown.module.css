@@ -17,14 +17,11 @@
   border: none;
   width: 100%;
   margin-bottom: 0.4em;
+  padding: 1.2em 2em;
 }
 
 .dropdownContent{
   position: absolute;
-
-  /* temporal, se necesitará calcular altura */
-  opacity: 100%;
-
   font-size: 1.1em;
   width: 100%;
   overflow-y: hidden;
@@ -32,11 +29,22 @@
 
 .dropdownButton, .dropdownContent{
   border-radius: 0.4em;
-  padding: 1.2em 1.8em;
 }
 
-.dropdownContent > * + * {
-  margin-top: 0.6em;
+.dropdownContent button{
+  width: 100%;
+  text-align: left;
+  border: none;
+  padding: 0.5em 2em;
+}
+
+
+.dropdownContent li:first-child{
+  padding-top: 0.5em;
+}
+
+.dropdownContent li:last-child{
+  padding-bottom: 0.5em;
 }
 
 .isHidden {

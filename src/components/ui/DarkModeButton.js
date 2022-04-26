@@ -11,13 +11,20 @@ const DarkModeButton = () => {
     ctx.toggleScheme();
   };
 
+  const buttonContent =
+    ctx.scheme === "dark" ? (
+      <>
+        <SunIcon /> Light Mode
+      </>
+    ) : (
+      <>
+        <MoonIcon /> Dark Mode
+      </>
+    );
+
   return (
-    <button
-      onClick={onChangeSchemeHandler}
-      className={classes["darkmode-button"]}
-    >
-      <MoonIcon />
-      Dark Mode
+    <button onClick={onChangeSchemeHandler} className={classes.darkmodeButton}>
+      {buttonContent}
     </button>
   );
 };

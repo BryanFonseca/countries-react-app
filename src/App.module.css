@@ -1,5 +1,5 @@
 .dark, .light{
-/*   transition: background-color 0.1s; */
+  transition: background-color 0.2s;
   color: var(--text-color);
   background-color: var(--background-color);
 }
