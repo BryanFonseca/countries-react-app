@@ -1,0 +1,13 @@
+.header{
+/*   background-color: hsl(0, 0%, 100%); */
+  background-color: var(--background-color);
+  display: flex;
+  justify-content: space-between;
+  padding: 2.4em 1.2em;
+  margin-bottom: 1.4em;
+}
+
+.header h1 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}

@@ -1,0 +1,44 @@
+.dropdown{
+  position: relative;
+  font-size: 0.85rem;
+  max-width: 50%;
+}
+
+.dropdown svg {
+  height: 12px;
+  width: 12px;
+}
+
+.dropdownButton{
+  font-size: inherit;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+  width: 100%;
+  margin-bottom: 0.4em;
+}
+
+.dropdownContent{
+  position: absolute;
+
+  /* temporal, se necesitará calcular altura */
+  opacity: 100%;
+
+  font-size: 1.1em;
+  width: 100%;
+  overflow-y: hidden;
+}
+
+.dropdownButton, .dropdownContent{
+  border-radius: 0.4em;
+  padding: 1.2em 1.8em;
+}
+
+.dropdownContent > * + * {
+  margin-top: 0.6em;
+}
+
+.isHidden {
+  height: 0;
+}
