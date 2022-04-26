@@ -6,8 +6,9 @@
   padding: 0.4em 0.8em;
   margin: 0 auto;
 
-  margin-bottom: 2.5em;
+  margin-bottom: 1.2em;
 }
+
 @media (min-width: 47.5em) {
   .searchForm {
     width: 50%;

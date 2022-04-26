@@ -7,20 +7,22 @@
 
 @media (min-width: 47.5em) {
   .countriesGrid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 21em 21em;
+    justify-content: space-between;
     gap: 5em;
   }
 }
 
-@media (min-width: 74em) {
+@media (min-width: 72em) {
   .countriesGrid {
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 7em;
+    grid-template-columns: repeat(3, 21em);
+    grid-column-gap: 2em;
+    grid-row-gap: 5em;
   }
 }
 
 @media (min-width: 90em) {
   .countriesGrid {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, 21em);
   }
 }

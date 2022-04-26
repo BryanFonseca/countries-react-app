@@ -21,12 +21,13 @@ export const AppContextProvider = (props) => {
   };
 
   const filterCountries = (enteredFilter) => {
-    if(enteredFilter.toLowerCase().includes('all')) {
+    if (enteredFilter.toLowerCase().includes("all")) {
       setFilteredCountries(countriesData);
       return;
     }
     setFilteredCountries(
       countriesData.filter((country) => {
+	// so that it matches Americas as America
         return country.region.includes(enteredFilter);
       })
     );
