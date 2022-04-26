@@ -1,0 +1,26 @@
+.countriesGrid {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  display: grid;
+  gap: 1em;
+}
+
+@media (min-width: 47.5em) {
+  .countriesGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 5em;
+  }
+}
+
+@media (min-width: 74em) {
+  .countriesGrid {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 7em;
+  }
+}
+
+@media (min-width: 90em) {
+  .countriesGrid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}

@@ -1,0 +1,24 @@
+.wrapper {
+  padding: 0.4em 1em;
+}
+
+@media (min-width: 47.5em) {
+  .wrapper {
+    padding: 0.4em 4em;
+    margin-left: 0;
+    margin-right: 0;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+  }
+}
+
+@media (min-width: 74em) {
+  .wrapper {
+  }
+}
+
+@media (min-width: 90em) {
+  .wrapper {
+  }
+}

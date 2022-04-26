@@ -1,7 +1,7 @@
 import classes from './Controls.module.css';
 
-import SearchBar from "./SearchBar";
-import Dropdown from "./Dropdown";
+import SearchBar from "../SearchBar";
+import Dropdown from "../Dropdown";
 
 const Controls = () => {
   return (

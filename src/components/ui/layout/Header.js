@@ -1,7 +1,7 @@
 import classes from "./Header.module.css";
-import DarkModeButton from "./DarkModeButton";
+import DarkModeButton from "../DarkModeButton";
 
-import generals from './General.module.css';
+import generals from '../General.module.css';
 
 const Header = () => {
   return (
