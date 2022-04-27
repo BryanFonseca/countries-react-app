@@ -27,8 +27,23 @@ export const AppContextProvider = (props) => {
     }
     setFilteredCountries(
       countriesData.filter((country) => {
-	// so that it matches Americas as America
+        // so that it matches Americas as America
         return country.region.includes(enteredFilter);
+      })
+    );
+  };
+
+  const filterCountriesByName = (enteredName) => {
+    if (enteredName === "") {
+      setFilteredCountries(countriesData);
+      return;
+    }
+
+    setFilteredCountries(
+      countriesData.filter((country) => {
+        return country.name.common
+          .toLowerCase()
+          .includes(enteredName.toLowerCase());
       })
     );
   };
@@ -42,6 +57,7 @@ export const AppContextProvider = (props) => {
         setCountriesData,
         filterCountries,
         filteredCountries,
+        filterCountriesByName,
       }}
     >
       {props.children}
