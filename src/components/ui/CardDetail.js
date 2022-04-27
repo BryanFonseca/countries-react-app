@@ -27,8 +27,12 @@ const CardDetail = (props) => {
 
   const [buttons, setButtons] = useState([]);
 
+  const createBorderCountryButton = (data) => {
+
+  }
+
   useEffect(() => {
-    // fetch full country names since /all endpoint does not provide it but the code
+    // fetch full country names since /all endpoint only provides their the code
     setButtons([]);
     borders.forEach((country) => {
       fetch(`https://restcountries.com/v3.1/alpha/${country}`)

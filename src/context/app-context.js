@@ -20,7 +20,7 @@ export const AppContextProvider = (props) => {
     });
   };
 
-  const filterCountries = (enteredFilter) => {
+  const filterCountriesByRegion = (enteredFilter) => {
     if (enteredFilter.toLowerCase().includes("all")) {
       setFilteredCountries(countriesData);
       return;
@@ -55,7 +55,7 @@ export const AppContextProvider = (props) => {
         scheme,
         countriesData,
         setCountriesData,
-        filterCountries,
+        filterCountriesByRegion,
         filteredCountries,
         filterCountriesByName,
       }}

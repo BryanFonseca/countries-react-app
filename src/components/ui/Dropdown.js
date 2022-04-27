@@ -30,12 +30,13 @@ const Dropdown = () => {
   }, []);
 
   useEffect(() => {
+    const dropDownStyle = dropdownContentRef.current.style;
     if (isVisible) {
-      dropdownContentRef.current.style.height = `${dropdownHeight}px`;
-      dropdownContentRef.current.style.padding = `${dropdownPadding.topBottom} ${dropdownPadding.leftRight}`;
+      dropDownStyle.height = `${dropdownHeight}px`;
+      dropDownStyle.padding = `${dropdownPadding.topBottom} ${dropdownPadding.leftRight}`;
     } else {
-      dropdownContentRef.current.style.height = 0;
-      dropdownContentRef.current.style.padding = `0px ${dropdownPadding.leftRight}`;
+      dropDownStyle.height = 0;
+      dropDownStyle.padding = `0px ${dropdownPadding.leftRight}`;
     }
   }, [isVisible]);
 
@@ -48,7 +49,7 @@ const Dropdown = () => {
   const onFilter = (e) => {
     // event delegation
     const filter = e.target.textContent;
-    ctx.filterCountries(filter);
+    ctx.filterCountriesByRegion(filter);
     setIsVisible(false);
   };
 

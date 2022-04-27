@@ -1,26 +1,24 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useContext } from "react";
 import AppContext from "../../context/app-context";
 import classes from "./Countries.module.css";
 import CountryCard from "./CountryCard";
 
+import useHttp from "../../hooks/use-http";
+
 import { NavLink } from "react-router-dom";
 
 const Countries = () => {
-  const [isLoading, setIsLoading] = useState(false);
   const ctx = useContext(AppContext);
 
-  useEffect(() => {
-    if (ctx.countriesData) return;
+  const { request, isLoading, error } = useHttp(
+    "https://restcountries.com/v3.1/all?fields=name,population,region,subregion,capital,tld,currencies,languages,borders,flags",
+    ctx.setCountriesData
+  );
 
-    setIsLoading(true);
-    fetch(
-      "https://restcountries.com/v3.1/all?fields=name,population,region,subregion,capital,tld,currencies,languages,borders,flags"
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setIsLoading(false);
-        ctx.setCountriesData(data);
-      });
+  useEffect(() => {
+    if (!ctx.countriesData) {
+      request();
+    }
   }, []);
 
   let countriesCards;
@@ -28,7 +26,10 @@ const Countries = () => {
     const dataSource = ctx.filteredCountries ?? ctx.countriesData;
     countriesCards = dataSource.map((countryData) => {
       return (
-        <NavLink key={countryData.name.common} to={`/countries/${countryData.name.common}`}>
+        <NavLink
+          key={countryData.name.common}
+          to={`/countries/${countryData.name.common}`}
+        >
           <CountryCard
             imageUrl={countryData.flags?.png ?? countryData.flags?.svg}
             name={countryData.name.common}
@@ -43,6 +44,7 @@ const Countries = () => {
 
   return (
     <ul className={classes.countriesGrid}>
+      {error}
       {isLoading ? <p>Loading...</p> : countriesCards}
     </ul>
   );
