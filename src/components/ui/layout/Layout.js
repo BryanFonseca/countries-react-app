@@ -7,8 +7,8 @@ const Layout = (props) => {
   return (
     <div className={`${props.className} ${classes.background}`}>
       <Header/>
-      <Controls />
-      <main className={classes.main}>{props.children}</main>
+      {/* <Controls /> */}
+      <>{props.children}</>
     </div>
   );
 };

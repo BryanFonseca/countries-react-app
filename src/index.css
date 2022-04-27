@@ -39,6 +39,8 @@
 
 img {
   max-width: 100%;
+  /* needs further testing */
+  min-width: 100%;
 }
 
 ul,
@@ -57,4 +59,8 @@ button:hover {
 svg {
   height: 20px;
   width: 20px;
+}
+
+a {
+  text-decoration: none;
 }

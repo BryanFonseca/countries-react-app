@@ -1,6 +1,7 @@
 .countriesGrid {
-  grid-template-columns: 1fr;
-  justify-items: center;
+  grid-template-columns: 21em;
+  justify-items: stretch;
+  justify-content: center;
   display: grid;
   gap: 1em;
 }

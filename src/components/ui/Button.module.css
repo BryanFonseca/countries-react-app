@@ -1,0 +1,20 @@
+.button, .buttonSmall {
+/*   background-color: var(--elements-color); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+
+.button:hover, .buttonSmall:hover {
+  cursor: pointer;
+}
+
+.button {
+  padding: 0.5em 1.5em;
+  gap: 0.6em;
+}
+
+.buttonSmall {
+  padding: 0.4em 0em;
+}

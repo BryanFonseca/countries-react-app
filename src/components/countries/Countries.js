@@ -3,11 +3,15 @@ import AppContext from "../../context/app-context";
 import classes from "./Countries.module.css";
 import CountryCard from "./CountryCard";
 
+import { NavLink } from "react-router-dom";
+
 const Countries = () => {
   const [isLoading, setIsLoading] = useState(false);
   const ctx = useContext(AppContext);
 
   useEffect(() => {
+    if (ctx.countriesData) return;
+
     setIsLoading(true);
     fetch(
       "https://restcountries.com/v3.1/all?fields=name,population,region,subregion,capital,tld,currencies,languages,borders,flags"
@@ -24,14 +28,15 @@ const Countries = () => {
     const dataSource = ctx.filteredCountries ?? ctx.countriesData;
     countriesCards = dataSource.map((countryData) => {
       return (
-        <CountryCard
-          key={countryData.name.common}
-          imageUrl={countryData.flags?.png ?? countryData.flags?.svg}
-          name={countryData.name.common}
-          population={countryData.population}
-          region={countryData.region}
-          capital={countryData?.capital?.[0] ?? countryData.capital ?? ""}
-        />
+        <NavLink key={countryData.name.common} to={`/countries/${countryData.name.common}`}>
+          <CountryCard
+            imageUrl={countryData.flags?.png ?? countryData.flags?.svg}
+            name={countryData.name.common}
+            population={countryData.population}
+            region={countryData.region}
+            capital={countryData?.capital?.[0] ?? countryData.capital ?? ""}
+          />
+        </NavLink>
       );
     });
   }
