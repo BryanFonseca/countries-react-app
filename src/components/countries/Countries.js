@@ -10,14 +10,14 @@ import { NavLink } from "react-router-dom";
 const Countries = () => {
   const ctx = useContext(AppContext);
 
-  const { request, isLoading, error } = useHttp(
-    "https://restcountries.com/v3.1/all?fields=name,population,region,subregion,capital,tld,currencies,languages,borders,flags",
-    ctx.setCountriesData
-  );
+  const { request, isLoading, error } = useHttp();
 
   useEffect(() => {
     if (!ctx.countriesData) {
-      request();
+      request(
+        "https://restcountries.com/v3.1/all?fields=name,population,region,subregion,capital,tld,currencies,languages,borders,flags",
+        ctx.setCountriesData
+      );
     }
   }, []);
 

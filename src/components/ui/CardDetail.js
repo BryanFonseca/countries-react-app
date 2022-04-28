@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import AppContext from "../../context/app-context";
+import useHttp from "../../hooks/use-http";
 
 import Button from "./Button";
 
@@ -27,27 +28,25 @@ const CardDetail = (props) => {
 
   const [buttons, setButtons] = useState([]);
 
-  const createBorderCountryButton = (data) => {
+  const createBorderCountryButton = (country, data) => {
+    const countryResponseName = data?.[0].name.common;
+    setButtons((prevState) => {
+      return [
+        ...prevState,
+        <NavLink to={`/countries/${countryResponseName}`} key={country}>
+          <Button size="small">{countryResponseName}</Button>
+        </NavLink>,
+      ];
+    });
+  };
 
-  }
+  const { request } = useHttp();
 
   useEffect(() => {
     // fetch full country names since /all endpoint only provides their the code
     setButtons([]);
     borders.forEach((country) => {
-      fetch(`https://restcountries.com/v3.1/alpha/${country}`)
-        .then((response) => response.json())
-        .then((data) => {
-          const countryResponseName = data?.[0].name.common;
-          setButtons((prevState) => {
-            return [
-              ...prevState,
-              <NavLink to={`/countries/${countryResponseName}`} key={country}>
-                <Button size="small">{countryResponseName}</Button>
-              </NavLink>,
-            ];
-          });
-        });
+      request(`https://restcountries.com/v3.1/alpha/${country}`, createBorderCountryButton.bind(null, country));
     });
   }, [borders]);
 
@@ -57,7 +56,7 @@ const CardDetail = (props) => {
       <div className={classes.countryInfo}>
         <h2>{name.common}</h2>
         <div className={classes.countryInfoText}>
-          <div >
+          <div>
             <p>
               <strong>Native Name: </strong>
               {name.official}

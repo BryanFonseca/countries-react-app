@@ -2,6 +2,12 @@
   max-width: 21rem;
   overflow: hidden;
   border-radius: 0.4em;
+
+  transition: box-shadow 0.5s;
+}
+
+.card:hover {
+  box-shadow: 0em 0em 1.4em 1.0em rgba(0, 0, 0, 15%);
 }
 
 .card p{

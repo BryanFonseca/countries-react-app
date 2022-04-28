@@ -11,15 +11,30 @@ const SearchBar = () => {
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
-    ctx.filterCountriesByName(searchText);
+/*     const timeoutId = setTimeout(() => {
+      if (!searchText) {
+        ctx.filterCountriesByName(searchText);
+      }
+    }, 250);
+    return () => {
+      clearTimeout(timeoutId);
+    }; */
   }, [searchText]);
 
   const onChangeSearchTextHandler = (e) => {
     setSearchText(e.target.value);
   };
 
+  const onSearchHandler = (e) => {
+    e.preventDefault();
+    ctx.filterCountriesByName(searchText);
+  };
+
   return (
-    <form className={`${classes.searchForm} ${generals.element}`}>
+    <form
+      onSubmit={onSearchHandler}
+      className={`${classes.searchForm} ${generals.element}`}
+    >
       <button className={classes.searchButton}>
         <SearchIcon />
       </button>

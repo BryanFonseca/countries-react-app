@@ -1,11 +1,10 @@
+/* BASE STYLES */
+
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap");
 
 :root {
   font-family: "Inter", sans-serif;
   font-size: 0.875rem;
-
-  /* light mode text */
-  color: hsl(200, 15%, 8%);
 
   /* night scheme */
   --dark-elements: hsl(209, 23%, 22%);
@@ -25,10 +24,9 @@
   --text-color: var(--light-text);
 }
 
-
 *,
-::after,
-::before {
+*::after,
+*::before {
   box-sizing: border-box;
   margin: 0;
   padding: 0;

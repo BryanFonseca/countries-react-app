@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-const useHttp = (url, action, method = "GET") => {
+const useHttp = (method = "GET") => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const request = async () => {
+  const request = async (url, action) => {
     try {
       setIsLoading(true);
       const response = await fetch(url, {
