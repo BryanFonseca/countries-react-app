@@ -24,7 +24,7 @@ const DetailPage = () => {
         ctx.setCountriesData
       );
     }
-  }, []);
+  }, [ctx.setCountriesData, request, ctx.countriesData]);
 
   return (
     <>

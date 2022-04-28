@@ -48,7 +48,7 @@ const CardDetail = (props) => {
     borders.forEach((country) => {
       request(`https://restcountries.com/v3.1/alpha/${country}`, createBorderCountryButton.bind(null, country));
     });
-  }, [borders]);
+  }, [borders, request]);
 
   return (
     <div className={classes.countryDetails}>

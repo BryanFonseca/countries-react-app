@@ -19,7 +19,7 @@ const Countries = () => {
         ctx.setCountriesData
       );
     }
-  }, []);
+  }, [ctx.setCountriesData, request, ctx.countriesData]);
 
   let countriesCards;
   if (ctx.countriesData) {
