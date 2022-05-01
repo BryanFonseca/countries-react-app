@@ -1,21 +1,39 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useReducer } from "react";
 
-const AppContext = createContext({
-});
+const AppContext = createContext({});
+
+const uiOpenablesReducer = (prevState, action) => {
+  if (action.type === "SUBSCRIBE") {
+    return [...prevState, action.openableComponent];
+  }
+  if (action.type === "UNSUBSCRIBE") {
+    const newSubscribers = prevState.filter(
+      (openable) => openable.ref !== action.subscriber.ref
+    );
+    return [...newSubscribers];
+  }
+  return [...prevState];
+};
 
 export const AppContextProvider = (props) => {
   const [scheme, setScheme] = useState("dark");
   const [countriesData, setCountriesData] = useState(null);
   const [filteredCountries, setFilteredCountries] = useState(null);
-  const [areActionsHidden, setAreActionsHidden] = useState(true);
 
-  const onHideActions = () => {
-    setAreActionsHidden(true);
+  const [uiOpenables, dispatchUiOpenables] = useReducer(uiOpenablesReducer, []);
+
+  const onHideOpenables = (openableClicked) => {
+    if (uiOpenables.find((openable) => openable.ref === openableClicked)) return;
+    uiOpenables.forEach((openable) => openable.hide());
   };
 
-  const onShowActions = () => {
-    setAreActionsHidden(false);
-  }
+  const subscribeOpenable = (openableComponent) => {
+    dispatchUiOpenables({ type: "SUBSCRIBE", openableComponent });
+  };
+
+  const unSubscribeOpenable = (subscriber) => {
+    dispatchUiOpenables({ type: "UNSUBSCRIBE", subscriber });
+  };
 
   const toggleScheme = () => {
     setScheme((state) => {
@@ -64,9 +82,10 @@ export const AppContextProvider = (props) => {
         filterCountriesByRegion,
         filteredCountries,
         filterCountriesByName,
-	onHideActions,
-	onShowActions,
-	areActionsHidden
+        onHideOpenables,
+        subscribeOpenable,
+        unSubscribeOpenable,
+        uiOpenables,
       }}
     >
       {props.children}

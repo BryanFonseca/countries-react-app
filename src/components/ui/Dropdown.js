@@ -14,6 +14,7 @@ let dropdownPadding = {
 const Dropdown = () => {
   const [isVisible, setIsVisible] = useState(false);
   const dropdownContentRef = useRef();
+  const dropdownButtonRef = useRef();
 
   useEffect(() => {
     setTimeout(() => {
@@ -28,12 +29,26 @@ const Dropdown = () => {
     [dropdownPadding.topBottom, dropdownPadding.leftRight] = paddingArray;
   }, []);
 
+  const hideDropdown = () => {
+    setIsVisible(false);
+  };
+
   const ctx = useContext(AppContext);
+
+  useEffect(() => {
+    const obj = {
+      ref: dropdownButtonRef,
+      hide: hideDropdown,
+    };
+    ctx.subscribeOpenable(obj);
+    return () => {
+      ctx.unSubscribeOpenable(obj);
+    };
+  }, [ctx]);
 
   useEffect(() => {
     const dropDownStyle = dropdownContentRef.current.style;
     if (isVisible) {
-      ctx.onShowActions();
       dropDownStyle.height = `${dropdownHeight}px`;
       dropDownStyle.padding = `${dropdownPadding.topBottom} ${dropdownPadding.leftRight}`;
     } else {
@@ -42,7 +57,9 @@ const Dropdown = () => {
     }
   }, [isVisible, ctx]);
 
-  const onShowDropdownHandler = () => {
+  const onShowDropdownHandler = (e) => {
+    // so that I only get the button on e.target inside Layout.js
+    e.stopPropagation();
     setIsVisible((state) => !state);
   };
 
@@ -53,15 +70,9 @@ const Dropdown = () => {
     setIsVisible(false);
   };
 
-  useEffect(() => {
-    if (ctx.areActionsHidden) {
-      setIsVisible(false);
-    }
-  }, [ctx.areActionsHidden]);
-
   return (
     <div className={`${classes.dropdown}`}>
-      <button
+      <button ref={dropdownButtonRef}
         onClick={onShowDropdownHandler}
         className={`${classes.dropdownButton} ${generals.element}`}
       >
