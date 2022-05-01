@@ -34,17 +34,18 @@ const Dropdown = () => {
   };
 
   const ctx = useContext(AppContext);
+  const { subscribeOpenable, unSubscribeOpenable } = ctx;
 
   useEffect(() => {
     const obj = {
       ref: dropdownButtonRef,
       hide: hideDropdown,
     };
-    ctx.subscribeOpenable(obj);
+    subscribeOpenable(obj);
     return () => {
-      ctx.unSubscribeOpenable(obj);
+      unSubscribeOpenable(obj);
     };
-  }, [ctx]);
+  }, [subscribeOpenable, unSubscribeOpenable]);
 
   useEffect(() => {
     const dropDownStyle = dropdownContentRef.current.style;

@@ -1,4 +1,4 @@
-import { createContext, useState, useReducer } from "react";
+import { createContext, useState, useReducer, useCallback } from "react";
 
 const AppContext = createContext({});
 
@@ -27,13 +27,13 @@ export const AppContextProvider = (props) => {
     uiOpenables.forEach((openable) => openable.hide());
   };
 
-  const subscribeOpenable = (openableComponent) => {
+  const subscribeOpenable = useCallback((openableComponent) => {
     dispatchUiOpenables({ type: "SUBSCRIBE", openableComponent });
-  };
+  }, [dispatchUiOpenables]);
 
-  const unSubscribeOpenable = (subscriber) => {
+  const unSubscribeOpenable = useCallback((subscriber) => {
     dispatchUiOpenables({ type: "UNSUBSCRIBE", subscriber });
-  };
+  }, [dispatchUiOpenables]);
 
   const toggleScheme = () => {
     setScheme((state) => {
