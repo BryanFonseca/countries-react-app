@@ -16,7 +16,6 @@ const DetailPage = () => {
   const ctx = useContext(AppContext);
 
   const { request, isLoading } = useHttp();
-
   useEffect(() => {
     if (!ctx.countriesData) {
       request(

@@ -1,15 +1,21 @@
 import { createContext, useState } from "react";
 
 const AppContext = createContext({
-  countriesData: [],
-  darkMode: true,
-  setScheme: () => {},
 });
 
 export const AppContextProvider = (props) => {
   const [scheme, setScheme] = useState("dark");
   const [countriesData, setCountriesData] = useState(null);
   const [filteredCountries, setFilteredCountries] = useState(null);
+  const [areActionsHidden, setAreActionsHidden] = useState(true);
+
+  const onHideActions = () => {
+    setAreActionsHidden(true);
+  };
+
+  const onShowActions = () => {
+    setAreActionsHidden(false);
+  }
 
   const toggleScheme = () => {
     setScheme((state) => {
@@ -58,6 +64,9 @@ export const AppContextProvider = (props) => {
         filterCountriesByRegion,
         filteredCountries,
         filterCountriesByName,
+	onHideActions,
+	onShowActions,
+	areActionsHidden
       }}
     >
       {props.children}

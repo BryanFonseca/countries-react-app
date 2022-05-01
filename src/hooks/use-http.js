@@ -1,10 +1,11 @@
-import { useState } from "react";
+// this should be more reusable
+import { useState, useCallback } from "react";
 
 const useHttp = (method = "GET") => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const request = async (url, action) => {
+  const request = useCallback(async (url, action) => {
     try {
       setIsLoading(true);
       const response = await fetch(url, {
@@ -19,7 +20,7 @@ const useHttp = (method = "GET") => {
     } catch (e) {
       setError(e.message);
     }
-  };
+  }, [method]);
 
   return { request, isLoading, error };
 };

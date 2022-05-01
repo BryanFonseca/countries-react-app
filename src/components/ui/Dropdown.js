@@ -3,7 +3,7 @@ import AppContext from "../../context/app-context";
 import classes from "./Dropdown.module.css";
 import generals from "./General.module.css";
 
-import DownArrow from './icons/DownArrow';
+import DownArrow from "./icons/DownArrow";
 
 let dropdownHeight = 0;
 let dropdownPadding = {
@@ -18,7 +18,6 @@ const Dropdown = () => {
   useEffect(() => {
     setTimeout(() => {
       // this is called after both effects ran and the dropdown was hidden
-      // refactor to RaF
       dropdownContentRef.current.style.transition = "all 0.4s";
     });
     dropdownHeight = dropdownContentRef.current.scrollHeight;
@@ -29,22 +28,23 @@ const Dropdown = () => {
     [dropdownPadding.topBottom, dropdownPadding.leftRight] = paddingArray;
   }, []);
 
+  const ctx = useContext(AppContext);
+
   useEffect(() => {
     const dropDownStyle = dropdownContentRef.current.style;
     if (isVisible) {
+      ctx.onShowActions();
       dropDownStyle.height = `${dropdownHeight}px`;
       dropDownStyle.padding = `${dropdownPadding.topBottom} ${dropdownPadding.leftRight}`;
     } else {
       dropDownStyle.height = 0;
       dropDownStyle.padding = `0px ${dropdownPadding.leftRight}`;
     }
-  }, [isVisible]);
+  }, [isVisible, ctx]);
 
   const onShowDropdownHandler = () => {
     setIsVisible((state) => !state);
   };
-
-  const ctx = useContext(AppContext);
 
   const onFilter = (e) => {
     // event delegation
@@ -53,6 +53,12 @@ const Dropdown = () => {
     setIsVisible(false);
   };
 
+  useEffect(() => {
+    if (ctx.areActionsHidden) {
+      setIsVisible(false);
+    }
+  }, [ctx.areActionsHidden]);
+
   return (
     <div className={`${classes.dropdown}`}>
       <button
@@ -60,10 +66,10 @@ const Dropdown = () => {
         className={`${classes.dropdownButton} ${generals.element}`}
       >
         <span>Filter by Region</span>
-	<DownArrow />
+        <DownArrow />
       </button>
       <ul
-      onClick={onFilter}
+        onClick={onFilter}
         ref={dropdownContentRef}
         className={`${classes.dropdownContent} ${generals.element}`}
       >
