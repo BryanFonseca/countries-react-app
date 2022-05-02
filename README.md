@@ -31,11 +31,13 @@ Users should be able to:
 
 ### Screenshot
 
-![screenshot 1](./screenshots/1.png)
-![screenshot 2](./screenshots/2.png)
-![screenshot 3](./screenshots/3.png)
-![screenshot 4](./screenshots/4.png)
-![screenshot 5](./screenshots/5.png)
+<p float="left">
+  <img src="./screenshots/1.png" width="500" />
+  <img src="./screenshots/2.png" width="500" /> 
+  <img src="./screenshots/3.png" width="300" />  
+  <img src="./screenshots/4.png" width="300" />
+  <img src="./screenshots/5.png" width="300" />
+</p>
 
 
 ### Links
