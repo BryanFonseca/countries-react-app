@@ -34,8 +34,9 @@
 
 @media (min-width: 47.5em) {
   .countryDetails > img {
-    flex-basis: 1;
+    flex-basis: 200px;
     flex-grow: 60;
+    flex-shrink: 0;
     min-width: auto;
   }
 }
@@ -56,6 +57,7 @@
 
 @media (min-width: 72em) {
   .countryInfo {
+    flex-basis: 200px;
     flex-grow: 40;
   }
 }
@@ -69,6 +71,19 @@
   flex-wrap: wrap;
   gap: 1em;
   justify-content: space-between;
+}
+@media (min-width: 47.5em) {
+  .bordersContainer {
+    display: flex;
+    align-items: center;
+    gap: 1.2em;
+  }
+  .countryInfo h3 {
+    flex-shrink: 0;
+  }
+  .buttonsContainer button {
+    padding: 0.3em 0.5em;
+  }
 }
 
 .buttonsContainer > * {

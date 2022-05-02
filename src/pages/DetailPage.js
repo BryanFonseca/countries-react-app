@@ -5,7 +5,7 @@ import AppContext from "../context/app-context";
 import CardDetail from "../components/ui/CardDetail";
 import useHttp from "../hooks/use-http";
 import Button from "../components/ui/Button";
-import ArrowLeft from "../components/ui/icons/ArrowLeft";
+import LeftArrowIcon from "../components/ui/icons/LeftArrowIcon";
 
 import classes from "../pages/Pages.module.css";
 
@@ -29,7 +29,7 @@ const DetailPage = () => {
     <>
       <main className={classes.main}>
         <Button onClick={history.goBack} className={classes.backButton}>
-          <ArrowLeft />
+          <LeftArrowIcon />
           Back
         </Button>
         {isLoading ? <p>Loading...</p> : ""}

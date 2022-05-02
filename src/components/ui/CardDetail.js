@@ -63,7 +63,7 @@ const CardDetail = (props) => {
             </p>
             <p>
               <strong>Population: </strong>
-              {population}
+              {new Intl.NumberFormat(navigator.language).format(population)}
             </p>
             <p>
               <strong>Region: </strong>

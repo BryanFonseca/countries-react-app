@@ -3,7 +3,7 @@ import AppContext from "../../context/app-context";
 import classes from "./Dropdown.module.css";
 import generals from "./General.module.css";
 
-import DownArrow from "./icons/DownArrow";
+import DownArrowIcon from './icons/DownArrowIcon';
 
 let dropdownHeight = 0;
 let dropdownPadding = {
@@ -78,7 +78,7 @@ const Dropdown = () => {
         className={`${classes.dropdownButton} ${generals.element}`}
       >
         <span>Filter by Region</span>
-        <DownArrow />
+        <DownArrowIcon />
       </button>
       <ul
         onClick={onFilter}

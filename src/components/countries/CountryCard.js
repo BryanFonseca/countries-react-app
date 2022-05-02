@@ -8,7 +8,7 @@ const CountryCard = (props) => {
       <div className={classes.cardInfo}>
         <h3>{props.name}</h3>
         <p>
-          <strong>Population:</strong> {props.population}
+          <strong>Population:</strong> {new Intl.NumberFormat(navigator.language).format(props.population)}
         </p>
         <p>
           <strong>Region:</strong> {props.region}
