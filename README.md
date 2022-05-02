@@ -31,8 +31,11 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshots/1.png)
-![](./screenshots/2.png)
+![screenshot 1](./screenshots/1.png)
+![screenshot 2](./screenshots/2.png)
+![screenshot 3](./screenshots/3.png)
+![screenshot 4](./screenshots/4.png)
+![screenshot 5](./screenshots/5.png)
 
 
 ### Links
