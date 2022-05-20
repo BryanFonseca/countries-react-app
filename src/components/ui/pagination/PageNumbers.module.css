@@ -1,0 +1,19 @@
+.active {
+  border-bottom: 0.2em solid var(--text-color);
+}
+
+.pageNumbers {
+  font-size: 1.2rem;
+  margin: 0 1em;
+}
+
+.pageNumbers > p {
+  display: inline-flex;
+  justify-content: center;
+  width: 1em;
+  padding-bottom: 0.1em;
+}
+
+.pageNumbers > p + p {
+  margin-left: 0.8em;
+}

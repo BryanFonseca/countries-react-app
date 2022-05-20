@@ -23,17 +23,24 @@ export const AppContextProvider = (props) => {
   const [uiOpenables, dispatchUiOpenables] = useReducer(uiOpenablesReducer, []);
 
   const onHideOpenables = (openableClicked) => {
-    if (uiOpenables.find((openable) => openable.ref === openableClicked)) return;
+    if (uiOpenables.find((openable) => openable.ref === openableClicked))
+      return;
     uiOpenables.forEach((openable) => openable.hide());
   };
 
-  const subscribeOpenable = useCallback((openableComponent) => {
-    dispatchUiOpenables({ type: "SUBSCRIBE", openableComponent });
-  }, [dispatchUiOpenables]);
+  const subscribeOpenable = useCallback(
+    (openableComponent) => {
+      dispatchUiOpenables({ type: "SUBSCRIBE", openableComponent });
+    },
+    [dispatchUiOpenables]
+  );
 
-  const unSubscribeOpenable = useCallback((subscriber) => {
-    dispatchUiOpenables({ type: "UNSUBSCRIBE", subscriber });
-  }, [dispatchUiOpenables]);
+  const unSubscribeOpenable = useCallback(
+    (subscriber) => {
+      dispatchUiOpenables({ type: "UNSUBSCRIBE", subscriber });
+    },
+    [dispatchUiOpenables]
+  );
 
   const toggleScheme = () => {
     setScheme((state) => {
@@ -44,7 +51,13 @@ export const AppContextProvider = (props) => {
     });
   };
 
+  const [pagination, setPagination] = useState(null);
+  const subscribePagination = useCallback((obj) => {
+    setPagination(obj);
+  }, []);
+
   const filterCountriesByRegion = (enteredFilter) => {
+    pagination.resetPagination();
     if (enteredFilter.toLowerCase().includes("all")) {
       setFilteredCountries(countriesData);
       return;
@@ -86,6 +99,7 @@ export const AppContextProvider = (props) => {
         subscribeOpenable,
         unSubscribeOpenable,
         uiOpenables,
+        subscribePagination,
       }}
     >
       {props.children}
