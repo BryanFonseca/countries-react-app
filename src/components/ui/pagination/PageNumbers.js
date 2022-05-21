@@ -1,19 +1,21 @@
 import classes from './PageNumbers.module.css';
 
 const PageNumbers = (props) => {
-  if (props.max < 5) {
-    // must return something different
+  if (props.lastPage < 5) {
     return (
-      <div>
-        <p>1</p>
-        <p>{left}</p>
-        <p>{middle}</p>
-        <p>{right}</p>
-        <p>{props.lastPage}</p>
+      <div className={classes.pageNumbers}>
+        {new Array(props.lastPage).fill(0).map((_, i) => (
+          <p
+            className={props.currentPage === i + 1 ? classes.active : ""}
+            key={i}
+          >
+            {i + 1}
+          </p>
+        ))}
       </div>
     );
   }
-  // up to 5 pages
+
   const left = props.currentPage < 3 ? 2 : "...";
   const right =
     props.currentPage > props.lastPage - 3 ? props.lastPage - 1 : "...";
